@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body>
+<h1>logined page</h1>
+
+<h4 class="mb-3" th:text="|로그인: ${people.email}|"></h4>
+
+<!-- 로그아웃 버튼  -->
+<a th:href="@{/logout}">log out</a>
+
+</body>
+</html>

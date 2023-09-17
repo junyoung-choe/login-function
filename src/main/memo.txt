@@ -1,0 +1,51 @@
+
+9 - 14 @ModelAttribute
+9 - 16 쿠기 사용법
+9 - 17
+
+if 문 사용해서 쓰고 로그인 된 화면
+
+- post get 차이점
+보통 DB에서 데이터 리스트를 불러올때는 GET
+즉 스프링에서 어떠한 정보를 가져와서 조회하기 위해 사용되는 방식
+-> Select 를 할때 사용한다
+
+생성, 수정, 삭제 등 데이터를 변경시 POST를 사용한다
+데이터를 서버로 제출하여 추가 또는 수정하기 위해서 데이터를 전송하는 방식
+-> Create, Update, Delect 할때 사용한다
+
+- @Repository
+@Controller 가 하나의 컨테이너를 만들고 (c)
+그 컨테이너 안에
+@Service
+@Repository
+두개를 담아서 자동으로 구현체 등록을 해준다 ! 의존성 배제 ! -> 역할(인터페이스)이 아닌 구현체에 등록해준다
+
+- @Entity
+@Entity : 클래스 위에 선언하여 이 클래스가 엔티티임을 알려준다. 이렇게 되면 JPA에서 정의된 필드들을 바탕으로 데이터베이스에 테이블을 만들어준다.
+
+- @Builder
+생성자 대신 사용하며 필드의 변수(DB 에서 속성) 이름으로 매칭하기 때문에 파라미터와 값 매칭을 일일이 하지 않아도 된다 !
+어노테이션 하나로 그냥 사용이 가능하다 !
+People people = People.builder()
+		.email("aaa@bbb.ccc")
+        .password("1234")
+        .build();
+
+- Controller 에서 리턴타입으로 왜 HTML 파일로 매핑이 되는지 !
+컨트롤러의 역할은 클라이언트의 요청을 수신하고 해당 요청을 처리하고 어떤 뷰를 처리할지 결정하는 역할을 한다 !
+즉 -> return 으로 어떤 뷰를 호출할건지 찾아낸다 !
+그렇다면 해당 return 을 매핑되는 컨트롤러가 있다면 컨트롤러로 들어가구 , 아니면 -> HTML로 이동한다 !
+결과 -> 요청의 처리가 컨트롤러가 먼저 가로채고 가로채지 못하면 HTML 파일로 넘어간다 !
+
+- @PostMapping 방식
+클라이언트가 ( 즉 (HTML 파일에서 post 방식으로 액션을 취했을때만 실행된다 ! ))
+
+- Model 의 사용법 !
+html 의 시점에서 Model로 객체를 넘겨 받는다 !
+Model model) Model을 이용해서 html 파일에 객체를 넘겨준다 !
+// 객체를 생성하고 모델에 추가
+        MyObject myObject = new MyObject("Hello, Thymeleaf!");
+        model.addAttribute("myObject", myObject);
+
+        return 뷰를 적어주면 해당 뷰에 값이 넘어간다 !

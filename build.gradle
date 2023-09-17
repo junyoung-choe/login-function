@@ -24,6 +24,12 @@ dependencies {
 
 	// H2 인메모리 설정
 	implementation 'com.h2database:h2'
+
+	// 엔티티 추가 | 버전이 안써도 스프링이 알아서 버전을 가져와준다 !  (spring-boot-starter ) 이렇게 붙은 친구들만
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+
+
 }
 
 tasks.named('test') {
