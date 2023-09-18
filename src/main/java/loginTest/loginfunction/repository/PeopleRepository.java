@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 // DAO -> 에 Entitity를 적용하고 여기 저장소에서 기능을 구현한다 !
 // 이렇게 구현하면 메소드가 다 정의 되어있는 것이다 !
+// JPA 기능으로 여기 해당 인터페이스가 클래스와 같은 역할을 한다 !
 @Repository
 public interface PeopleRepository extends JpaRepository<People, Long> {
     /*

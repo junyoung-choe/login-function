@@ -1,6 +1,7 @@
 package loginTest.loginfunction.domain;
 
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +13,6 @@ import javax.persistence.Id;
 // db 엔티티는 무조건 설정이 있어야 한다 !
 
 
-@Data
 @Entity
 public class People {
     // DB 접근 할때는 -> 객체에 id를 그냥 long 으로 만들었을때 0으로 들어가게 된다면 문제가 생긴다 !
@@ -22,7 +22,6 @@ public class People {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String email;
     private String password;
 
@@ -33,8 +32,7 @@ public class People {
 //        this.password = password;
 //    }
 
-    public People(Long id, String email, String password) {
-        this.id = id;
+    public People(String email, String password) {
         this.email = email;
         this.password = password;
     }
@@ -55,11 +53,19 @@ public class People {
         this.password = password;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
     public void setId(long id) {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "People{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
