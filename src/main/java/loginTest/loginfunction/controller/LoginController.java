@@ -10,16 +10,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.Member;
-import java.util.Arrays;
 
 /*
 여기서 모든
  */
 @Controller
-public class loginController {
+public class LoginController {
     LoginService loginService;
-    public loginController(LoginService loginService) {
+    public LoginController(LoginService loginService) {
         this.loginService = loginService;
     }
 
@@ -52,10 +50,10 @@ public class loginController {
     public String login(@ModelAttribute People people, HttpServletResponse response, Model model) { // Model을 이용해서 html 파일에 객체를 넘겨준다 !
 
         // DB 연결후 사용해야 한다 !
-//        if (!loginService.login(people)) { // 로그인 구현 메소드로 이동한다 !
-//            return "loginForm"; //  해당 email이 없다면 다시 로그인 페이지로 이동한다
-//            // 아이디 비밀번호를 다시 입력하시오
-//        }
+        if (!loginService.login(people)) { // 로그인 구현 메소드로 이동한다 !
+            return "loginForm"; //  해당 email이 없다면 다시 로그인 페이지로 이동한다
+            // 아이디 비밀번호를 다시 입력하시오
+        }
 
         // 로그인에 성공한다면 ! -> Model 에 해당 값을 담아준다 !
         // 여기서 앞의 "" 이름이 뷰 파일에서 그대로 사용된다 !
@@ -78,10 +76,12 @@ public class loginController {
 
     @PostMapping("signup")
     public String signup(@ModelAttribute People people) {
-        // DB 연결후 -> 해당 이메일과 같은 이메일이 없다면 성공해서 true 를 리턴 받는다
-//        if(!loginService.signup(people)) {
-//            return "signupForm";
-//        }
+        //DB 연결후 -> 해당 이메일과 같은 이메일이 없다면 성공해서 true 를 리턴 받는다
+        //System.out.println(people);
+
+        if(!loginService.signup(people)) {
+            return "signupForm";
+        }
 
         return "homeForm";
     }
