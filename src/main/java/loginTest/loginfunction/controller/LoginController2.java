@@ -52,6 +52,7 @@ public class LoginController2 {
 
         }
         // 세션 등록
+        // 세션을 새로 만들면 API 에서 자동으로 랜덤 키를 부여해준다 -> 그러면 세션 저장 장소에 객체 넣어놓고 키에 맞을때 사용하도록 제작
         HttpSession session = request.getSession();
         session.setAttribute("people",people); // 객체 자체를 세션으로 등록
         session.setMaxInactiveInterval(60 * 30);   // 디폴트 30분 !
@@ -61,7 +62,21 @@ public class LoginController2 {
         model.addAttribute("condition",condition);
 
         return "homeForm";
+
+        // 세션 명령어
+        /*
+        // 세션 얻기
+        HttpSession session1 = request.getSession();
+        // 세션에 데이터 설정
+        session1.setAttribute("key", instance);
+        // 세션에서 데이터 가져오기
+        String value = (String) session1.getAttribute("key");
+        // 세션에서 데이터 삭제
+        session1.removeAttribute("key");
+        */
+
     }
+
 
     @PostMapping("signup")
     public String signup(@ModelAttribute People people, Model model) {

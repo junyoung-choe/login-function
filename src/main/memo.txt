@@ -1,7 +1,11 @@
 
 9 - 14 @ModelAttribute
+9 - 15 Model model
 9 - 16 쿠기 사용법
-9 - 17
+9 - 17 DB 연결후 Service 에서 DB를 이용한 구현 로직 추가
+9 - 18 세션추가
+
+
 
 if 문 사용해서 쓰고 로그인 된 화면
 
@@ -20,6 +24,9 @@ if 문 사용해서 쓰고 로그인 된 화면
 @Service
 @Repository
 두개를 담아서 자동으로 구현체 등록을 해준다 ! 의존성 배제 ! -> 역할(인터페이스)이 아닌 구현체에 등록해준다
+
+@Autowired
+는 객체를 받아올때 사용한다 ! (즉 구현체를 등록해준다 생성자로 내가 사용할 객체 찾기)
 
 - @Entity
 @Entity : 클래스 위에 선언하여 이 클래스가 엔티티임을 알려준다. 이렇게 되면 JPA에서 정의된 필드들을 바탕으로 데이터베이스에 테이블을 만들어준다.
@@ -68,5 +75,17 @@ Model model) Model을 이용해서 html 파일에 객체를 넘겨준다 !
 세션 만료
 
 
+// if 문 사용해서 쓰고 로그인 된 화면
+// post get 차이점
+// @Repository 도 찾아보기 !
+// @Entity
 
+@ResponseBody: -> 클라이언트에게 응답을 해준다 (set 이 필요하다)
+@RequestBody: -> 클라이언트의 요청을 받아서 처리한다
+@PathVariable: -> @GetMapping("/users/{userId}") 이렇게 매핑된 변수를 받아온다
+@ModelAttribute: -> html로 부터 값을 읽어와서 처리한다
 
+*/
+
+JPA DB 를 사용할때 제작되어 있는 메소드를 사용하기 위해서 알아야 할것 !
+내 로직에서 DB 반영이 될때 PK(ID) 를 부여하기 때문에 새로 넣는 객체에서의 ID 를 활용은 불가하다
