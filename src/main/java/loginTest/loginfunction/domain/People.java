@@ -1,5 +1,6 @@
 package loginTest.loginfunction.domain;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 import org.springframework.data.jpa.repository.Query;
@@ -11,8 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 // db 엔티티는 무조건 설정이 있어야 한다 !
-
-
+@Data
+@Builder
 @Entity
 public class People {
     // DB 접근 할때는 -> 객체에 id를 그냥 long 으로 만들었을때 0으로 들어가게 된다면 문제가 생긴다 !
